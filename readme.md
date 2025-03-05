@@ -1,51 +1,8 @@
-Passo a passo para iniciação do projeto em React
+# React + Vite
 
-Criar o projeto comm o Vite
-```bash
-npm create vite@5.5.2 .
-```
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-freamework: React
-variante: JavaScript
+Currently, two official plugins are available:
 
-Instalar os pacotes
-```bash
-npm install
-```
-
-Iniciar o projeto
-```bash
-npm run dev
-```
-
-```bash
-npm install -D tailwindcss@3.4.10 postcss@8.4.41 autoprefixer@10.4.20
-```
-
-```bash
-npx tailwindcss init -p
-```
-
-Colar no tailwind.config.js:
-```bash
-/** @type {import('tailwindcss').Config} */
-export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-    "./components/**/*.{js,ts,jsx,tsx}",
-    "./pages/**/*.{js,ts,jsx,tsx}",
-  ],
-  theme: {
-    extend: {},
-  },
-  plugins: [],
-};
-```
-
-Colar no index.css:
-```bash
-@tailwind base;
-@tailwind components;
-@tailwind utilities;    
-```
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
