@@ -4,11 +4,24 @@ import { X, MapPin, Calendar, Briefcase } from "lucide-react";
 
 const experiences = [
   {
+    title: "Data Engineer",
+    company: "NOS SGPS",
+    location: "Porto, Portugal",
+    period: "06/2025 – Present",
+    current: true,
+    description: [
+      "Building and maintaining high-volume pipelines using Airflow, DBT, Terraform and Astronomer on GCP and BigQuery.",
+      "Developing query and processing scripts in Google BigQuery as well as ETLs in PySpark on HIVE over Hadoop clusters.",
+      "HIVE and BigQuery database administration and code versioning on GitHub.",
+      "Project management on Jira, dashboard creation in Power BI and management reporting.",
+      "Responsible for network quality KPIs, Python automation bots and cross-functional support.",
+    ],
+  },
+  {
     title: "Data & Analytics Lead",
     company: "NOS SGPS",
     location: "Porto, Portugal",
-    period: "06/2023 – Present",
-    current: true,
+    period: "06/2023 – 06/2025",
     description: [
       "Leading the Production & Analytics team.",
       "Creating query and processing scripts in Google BigQuery.",
@@ -214,7 +227,7 @@ export default function Experience() {
                 <ul className="space-y-2">
                   {selected.description.map((item, i) => (
                     <li key={i} className="flex items-start gap-2 text-slate-300">
-                      <span className="text-cyan-400 mt-1 shrink-0">&#9658;</span>
+                      <span className="text-cyan-400 mt-1 shrink-0">▸</span>
                       {item}
                     </li>
                   ))}
