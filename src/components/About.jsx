@@ -21,6 +21,7 @@ const education = [
 ];
 
 const extraCourses = [
+  { name: "Emotion are Data", institution: "Trasformar", year: "2026" },
   { name: "Programa Team Management", institution: "Nova SBE", year: "2024" },
   { name: "FAAST Ignite", institution: "Nova SBE", year: "2023" },
   { name: "Business Intelligence ETL Integration Services", institution: "Udemy", year: "2019" },
