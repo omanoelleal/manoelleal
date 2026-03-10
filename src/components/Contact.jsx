@@ -5,8 +5,8 @@ const contacts = [
   {
     icon: "mail",
     label: "Email",
-    value: "manoelleallima@gmail.com",
-    href: "mailto:manoelleallima@gmail.com",
+    value: "manoel.leal@outlook.com",
+    href: "mailto:manoel.leal@outlook.com",
   },
   {
     icon: "linkedin",
@@ -98,7 +98,7 @@ export default function Contact() {
           className="text-center"
         >
           <a
-            href="mailto:manoelleallima@gmail.com"
+            href="mailto:manoel.leal@outlook.com"
             className="inline-block px-10 py-4 bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-bold rounded-full transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/30"
           >
             Send me an Email
