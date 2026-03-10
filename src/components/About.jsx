@@ -59,8 +59,12 @@ export default function About() {
           className="bg-slate-800/50 border border-slate-700 rounded-2xl p-8 mb-10"
         >
           <div className="flex flex-col md:flex-row gap-8 items-center">
-            <div className="w-36 h-36 rounded-full bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-5xl font-bold text-white shrink-0">
-              ML
+            <div className="w-36 h-36 rounded-full ring-4 ring-cyan-500 overflow-hidden shrink-0">
+              <img
+                src="https://avatars3.githubusercontent.com/u/52545988?s=300&v=4"
+                alt="Manoel Leal"
+                className="w-full h-full object-cover"
+              />
             </div>
             <div>
               <h3 className="text-2xl font-bold text-white mb-1">Manoel Leal</h3>
