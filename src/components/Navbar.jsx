@@ -1,122 +1,87 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Link } from "react-router-dom";
-import { useTranslation } from "react-i18next"; // Para tradução
+import { Link, useLocation } from "react-router-dom";
+
+const navLinks = [
+  { to: "/", label: "Home" },
+  { to: "/about", label: "About" },
+  { to: "/experience", label: "Experience" },
+  { to: "/contact", label: "Contact" },
+];
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const { t } = useTranslation(); // Hook para tradução
+  const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <nav className="bg-slate-300 dark:bg-slate-800 p-4 shadow-md fixed top-0 left-0 w-full z-50">
-      <div className="container mx-auto flex justify-between items-center">
-        {/* Logo */}
-        <Link to="/" className="text-white text-2xl font-bold">
-          Manoel Leal
+    <nav
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+        scrolled ? "bg-slate-900/95 backdrop-blur shadow-lg" : "bg-transparent"
+      }`}
+    >
+      <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+        <Link
+          to="/"
+          className="text-xl font-bold text-white tracking-wide hover:text-cyan-400 transition-colors"
+        >
+          ML<span className="text-cyan-400">.</span>
         </Link>
 
-        {/* Botão de Menu para Mobile */}
-        <button
-          className="text-white md:hidden"
-          onClick={() => setIsOpen(true)}
-        >
-          <Menu size={32} />
-        </button>
-
-        {/* Menu Desktop */}
-        <ul className="hidden md:flex gap-6 text-white">
-          <li>
-            <Link
-              to="/"
-              className="hover:text-gray-900 dark:hover:text-gray-300"
-            >
-              {t("home")}
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/about"
-              className="hover:text-gray-900 dark:hover:text-gray-300"
-            >
-              {t("about")}
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/experience"
-              className="hover:text-gray-900 dark:hover:text-gray-300"
-            >
-              {t("experience")}
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/contact"
-              className="hover:text-gray-900 dark:hover:text-gray-300"
-            >
-              {t("contact")}
-            </Link>
-          </li>
+        <ul className="hidden md:flex gap-8">
+          {navLinks.map((link) => (
+            <li key={link.to}>
+              <Link
+                to={link.to}
+                className={`text-sm font-medium transition-colors hover:text-cyan-400 ${
+                  location.pathname === link.to ? "text-cyan-400" : "text-slate-300"
+                }`}
+              >
+                {link.label}
+              </Link>
+            </li>
+          ))}
         </ul>
+
+        <button className="text-white md:hidden" onClick={() => setIsOpen(true)}>
+          <Menu size={28} />
+        </button>
       </div>
 
-      {/* Menu Mobile - Tela Cheia */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: "-100%" }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: "-100%" }}
+            initial={{ opacity: 0, x: "100%" }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: "100%" }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 bg-slate-300 dark:bg-slate-800 flex flex-col justify-center items-center text-white text-2xl"
+            className="fixed inset-0 bg-slate-900 flex flex-col justify-center items-center z-50"
           >
-            {/* Botão Fechar */}
             <button
               className="absolute top-6 right-6 text-white"
               onClick={() => setIsOpen(false)}
             >
-              <X size={40} />
+              <X size={36} />
             </button>
-
-            {/* Links do Menu */}
-            <ul className="flex flex-col gap-6">
-              <li>
-                <Link
-                  to="/"
-                  className="hover:text-gray-300"
-                  onClick={() => setIsOpen(false)}
-                >
-                  {t("home")}
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/about"
-                  className="hover:text-gray-300"
-                  onClick={() => setIsOpen(false)}
-                >
-                  {t("about")}
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/experience"
-                  className="hover:text-gray-300"
-                  onClick={() => setIsOpen(false)}
-                >
-                  {t("experience")}
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/contact"
-                  className="hover:text-gray-300"
-                  onClick={() => setIsOpen(false)}
-                >
-                  {t("contact")}
-                </Link>
-              </li>
+            <ul className="flex flex-col gap-8 text-center">
+              {navLinks.map((link) => (
+                <li key={link.to}>
+                  <Link
+                    to={link.to}
+                    className="text-2xl font-semibold text-white hover:text-cyan-400 transition-colors"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </motion.div>
         )}
