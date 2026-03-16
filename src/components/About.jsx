@@ -1,10 +1,26 @@
 import { motion } from "framer-motion";
 
-const skills = [
-  "Google BigQuery", "ETL", "SQL", "Python", "HIVE", "PySpark",
-  "Airflow", "DBT", "Terraform", "SSIS", "JSON", "Power BI",
-  "Power Apps", "Power Automate", "Hadoop", "HTML", "NoSQL (MongoDB)",
-  "Shell", "PHP", "SAS", "Linux", "HDFS", "Windows Server", "VBA",
+const skillGroups = [
+  {
+    label: "Cloud & Data",
+    color: "bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 hover:bg-cyan-500/25",
+    skills: ["Google BigQuery", "ETL", "HIVE", "PySpark", "Airflow", "DBT", "Terraform", "Hadoop", "HDFS", "NoSQL (MongoDB)"],
+  },
+  {
+    label: "Programming",
+    color: "bg-violet-500/15 text-violet-300 border border-violet-500/30 hover:bg-violet-500/25",
+    skills: ["Python", "SQL", "Shell", "PHP", "SAS", "VBA", "HTML", "JSON"],
+  },
+  {
+    label: "Microsoft Stack",
+    color: "bg-blue-500/15 text-blue-300 border border-blue-500/30 hover:bg-blue-500/25",
+    skills: ["Power BI", "Power Apps", "Power Automate", "SSIS"],
+  },
+  {
+    label: "Infrastructure",
+    color: "bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 hover:bg-emerald-500/25",
+    skills: ["Linux", "Windows Server"],
+  },
 ];
 
 const education = [
@@ -31,9 +47,9 @@ const extraCourses = [
 ];
 
 const languages = [
-  { name: "Portuguese", level: "Native" },
-  { name: "English", level: "Intermediate" },
-  { name: "Spanish", level: "Basic" },
+  { name: "Portuguese", level: "Native",       pct: 100 },
+  { name: "English",    level: "Intermediate",  pct: 65  },
+  { name: "Spanish",    level: "Basic",         pct: 30  },
 ];
 
 export default function About() {
@@ -87,17 +103,22 @@ export default function About() {
           className="mb-10"
         >
           <h3 className="text-2xl font-bold text-white mb-6">Technical Skills</h3>
-          <div className="bg-slate-800/50 border border-slate-700 rounded-xl p-6">
-            <div className="flex flex-wrap gap-2">
-              {skills.map((skill) => (
-                <span
-                  key={skill}
-                  className="px-3 py-1 bg-slate-700 text-slate-300 rounded-full text-sm"
-                >
-                  {skill}
-                </span>
-              ))}
-            </div>
+          <div className="space-y-5">
+            {skillGroups.map((group) => (
+              <div key={group.label}>
+                <p className="text-slate-500 text-xs uppercase tracking-widest mb-2">{group.label}</p>
+                <div className="flex flex-wrap gap-2">
+                  {group.skills.map((skill) => (
+                    <span
+                      key={skill}
+                      className={`px-3 py-1 rounded-full text-sm font-medium cursor-default transition-all duration-200 ${group.color}`}
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
           </div>
         </motion.div>
 
@@ -129,16 +150,23 @@ export default function About() {
             transition={{ duration: 0.6, delay: 0.4 }}
           >
             <h3 className="text-2xl font-bold text-white mb-6">Languages</h3>
-            <div className="space-y-4">
+            <div className="space-y-5">
               {languages.map((lang) => (
-                <div
-                  key={lang.name}
-                  className="bg-slate-800/50 border border-slate-700 rounded-xl p-5 flex justify-between items-center"
-                >
-                  <span className="text-white font-semibold">{lang.name}</span>
-                  <span className="px-3 py-1 bg-cyan-500/20 text-cyan-400 rounded-full text-sm">
-                    {lang.level}
-                  </span>
+                <div key={lang.name} className="bg-slate-800/50 border border-slate-700 rounded-xl p-5">
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="text-white font-semibold">{lang.name}</span>
+                    <span className="px-3 py-0.5 bg-cyan-500/20 text-cyan-400 rounded-full text-xs font-medium">
+                      {lang.level}
+                    </span>
+                  </div>
+                  <div className="h-1.5 bg-slate-700 rounded-full overflow-hidden">
+                    <motion.div
+                      className="h-full bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full"
+                      initial={{ width: 0 }}
+                      animate={{ width: `${lang.pct}%` }}
+                      transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
+                    />
+                  </div>
                 </div>
               ))}
             </div>

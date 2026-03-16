@@ -55,8 +55,11 @@ function Icon({ name }) {
 
 export default function Contact() {
   return (
-    <div className="min-h-screen bg-slate-900 py-24 px-6 flex flex-col justify-center">
-      <div className="max-w-3xl mx-auto w-full">
+    <div className="min-h-screen bg-slate-900 py-24 px-6 flex flex-col justify-center relative overflow-hidden">
+      <div className="absolute inset-0 dot-grid opacity-20" />
+      <div className="absolute top-1/3 left-1/4 w-80 h-80 bg-cyan-500/5 rounded-full blur-3xl" />
+      <div className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-blue-500/5 rounded-full blur-3xl" />
+      <div className="max-w-3xl mx-auto w-full relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -84,9 +87,9 @@ export default function Contact() {
                   href={c.href}
                   target="_blank"
                   rel="noreferrer"
-                  className="flex items-center gap-4 bg-slate-800/60 border border-slate-700 hover:border-cyan-500/60 rounded-xl p-5 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/10 hover:-translate-y-1 group"
+                  className="flex items-center gap-4 bg-slate-800/60 border border-slate-700 hover:border-cyan-500/60 rounded-xl p-5 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/15 hover:-translate-y-1 hover:bg-slate-800/90 group"
                 >
-                  <div className="text-cyan-400 group-hover:scale-110 transition-transform">
+                  <div className="text-cyan-400 group-hover:scale-110 group-hover:drop-shadow-[0_0_6px_rgba(34,211,238,0.8)] transition-all duration-200">
                     <Icon name={c.icon} />
                   </div>
                   <div>
@@ -117,7 +120,7 @@ export default function Contact() {
         >
           <a
             href="mailto:manoel.leal@outlook.com"
-            className="inline-block px-10 py-4 bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-bold rounded-full transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/30"
+            className="inline-block px-10 py-4 bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-bold rounded-full transition-all duration-300 hover:shadow-xl hover:shadow-cyan-500/40 hover:scale-105"
           >
             Send me an Email
           </a>

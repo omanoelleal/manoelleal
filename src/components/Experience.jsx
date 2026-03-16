@@ -131,7 +131,8 @@ export default function Experience() {
         </motion.div>
 
         <div className="relative">
-          <div className="absolute left-8 top-0 bottom-0 w-px bg-slate-700 md:left-1/2" />
+          {/* Timeline line — gradient from cyan to transparent */}
+          <div className="absolute left-8 top-0 bottom-0 w-px bg-gradient-to-b from-cyan-500/60 via-slate-700 to-transparent md:left-1/2" />
 
           {experiences.map((exp, index) => (
             <motion.div
@@ -143,7 +144,13 @@ export default function Experience() {
                 index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
               }`}
             >
-              <div className="absolute left-8 -translate-x-1/2 w-4 h-4 rounded-full bg-cyan-500 border-4 border-slate-900 z-10 md:left-1/2" />
+              {/* Timeline dot — pulsing ring for current role */}
+              <div className="absolute left-8 -translate-x-1/2 z-10 md:left-1/2">
+                {exp.current && (
+                  <span className="absolute inset-0 rounded-full bg-cyan-400/40 ping-slow" />
+                )}
+                <div className="w-4 h-4 rounded-full bg-cyan-500 border-4 border-slate-900" />
+              </div>
 
               <div
                 className={`ml-16 md:ml-0 md:w-5/12 ${
@@ -160,7 +167,8 @@ export default function Experience() {
                       <p className="text-cyan-400 font-medium text-sm">{exp.company}</p>
                     </div>
                     {exp.current && (
-                      <span className="text-xs bg-cyan-500/20 text-cyan-400 px-2 py-1 rounded-full shrink-0 ml-2">
+                      <span className="inline-flex items-center gap-1 text-xs bg-cyan-500/20 text-cyan-400 px-2 py-1 rounded-full shrink-0 ml-2 font-semibold">
+                        <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
                         Current
                       </span>
                     )}

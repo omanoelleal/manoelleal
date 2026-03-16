@@ -10,12 +10,22 @@ function WhatsAppIcon() {
   );
 }
 
+const stats = [
+  { value: "13+", label: "Years Exp." },
+  { value: "8",   label: "Roles" },
+  { value: "15+", label: "Technologies" },
+  { value: "2",   label: "Countries" },
+];
+
 export default function Home() {
   return (
     <div className="min-h-screen bg-slate-900 flex flex-col justify-center items-center relative overflow-hidden px-6">
+      {/* Background layers */}
       <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900" />
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl" />
+      <div className="absolute inset-0 dot-grid opacity-30" />
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl float-slow" />
+      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl float-slower" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-cyan-500/4 rounded-full blur-3xl" />
 
       <div className="relative z-10 text-center max-w-3xl">
         <motion.div
@@ -26,7 +36,7 @@ export default function Home() {
           <p className="text-cyan-400 font-mono text-lg mb-4 tracking-widest">
             Hello, I'm
           </p>
-          <h1 className="text-6xl md:text-7xl font-extrabold text-white mb-4 leading-tight">
+          <h1 className="text-6xl md:text-7xl font-extrabold mb-4 leading-tight gradient-text">
             Manoel Leal
           </h1>
           <h2 className="text-2xl md:text-3xl font-semibold text-cyan-400 mb-6">
@@ -38,6 +48,27 @@ export default function Home() {
           </p>
         </motion.div>
 
+        {/* Stats */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.25 }}
+          className="flex justify-center gap-8 mb-10"
+        >
+          {stats.map((s, i) => (
+            <motion.div
+              key={s.label}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.4, delay: 0.3 + i * 0.07 }}
+              className="text-center"
+            >
+              <p className="text-2xl md:text-3xl font-extrabold text-cyan-400">{s.value}</p>
+              <p className="text-slate-500 text-xs mt-1 tracking-wide uppercase">{s.label}</p>
+            </motion.div>
+          ))}
+        </motion.div>
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -46,13 +77,13 @@ export default function Home() {
         >
           <Link
             to="/experience"
-            className="px-8 py-3 bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-semibold rounded-full transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/30"
+            className="px-8 py-3 bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-semibold rounded-full transition-all duration-300 hover:shadow-xl hover:shadow-cyan-500/40 hover:scale-105"
           >
             View Experience
           </Link>
           <Link
             to="/contact"
-            className="px-8 py-3 border border-cyan-500 text-cyan-400 hover:bg-cyan-500/10 font-semibold rounded-full transition-all duration-300"
+            className="px-8 py-3 border border-cyan-500/60 text-cyan-400 hover:bg-cyan-500/10 hover:border-cyan-400 font-semibold rounded-full transition-all duration-300 hover:scale-105"
           >
             Contact Me
           </Link>
@@ -64,40 +95,24 @@ export default function Home() {
           transition={{ duration: 0.6, delay: 0.5 }}
           className="flex gap-6 justify-center"
         >
-          <a
-            href="https://github.com/omanoelleal"
-            target="_blank"
-            rel="noreferrer"
-            className="text-slate-400 hover:text-cyan-400 transition-colors"
-          >
+          <a href="https://github.com/omanoelleal" target="_blank" rel="noreferrer"
+            className="text-slate-400 hover:text-cyan-400 transition-all duration-200 hover:scale-110 hover:drop-shadow-[0_0_8px_rgba(34,211,238,0.7)]">
             <Github size={24} />
           </a>
-          <a
-            href="https://www.linkedin.com/in/manoelleal/"
-            target="_blank"
-            rel="noreferrer"
-            className="text-slate-400 hover:text-cyan-400 transition-colors"
-          >
+          <a href="https://www.linkedin.com/in/manoelleal/" target="_blank" rel="noreferrer"
+            className="text-slate-400 hover:text-cyan-400 transition-all duration-200 hover:scale-110 hover:drop-shadow-[0_0_8px_rgba(34,211,238,0.7)]">
             <Linkedin size={24} />
           </a>
-          <a
-            href="mailto:manoel.leal@outlook.com"
-            className="text-slate-400 hover:text-cyan-400 transition-colors"
-          >
+          <a href="mailto:manoel.leal@outlook.com"
+            className="text-slate-400 hover:text-cyan-400 transition-all duration-200 hover:scale-110 hover:drop-shadow-[0_0_8px_rgba(34,211,238,0.7)]">
             <Mail size={24} />
           </a>
-          <a
-            href="tel:+351913996410"
-            className="text-slate-400 hover:text-cyan-400 transition-colors"
-          >
+          <a href="tel:+351913996410"
+            className="text-slate-400 hover:text-cyan-400 transition-all duration-200 hover:scale-110 hover:drop-shadow-[0_0_8px_rgba(34,211,238,0.7)]">
             <Phone size={24} />
           </a>
-          <a
-            href="https://wa.me/351913996410"
-            target="_blank"
-            rel="noreferrer"
-            className="text-slate-400 hover:text-cyan-400 transition-colors"
-          >
+          <a href="https://wa.me/351913996410" target="_blank" rel="noreferrer"
+            className="text-slate-400 hover:text-cyan-400 transition-all duration-200 hover:scale-110 hover:drop-shadow-[0_0_8px_rgba(34,211,238,0.7)]">
             <WhatsAppIcon />
           </a>
         </motion.div>
@@ -105,11 +120,13 @@ export default function Home() {
 
       <motion.div
         initial={{ opacity: 0 }}
-        animate={{ opacity: [0, 1, 0] }}
-        transition={{ duration: 1.5, repeat: Infinity, delay: 1 }}
-        className="absolute bottom-10 text-slate-500"
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8, delay: 1.2 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-slate-600"
       >
-        <ArrowDown size={24} />
+        <div className="bounce-y">
+          <ArrowDown size={20} />
+        </div>
       </motion.div>
     </div>
   );

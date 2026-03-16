@@ -24,7 +24,9 @@ export default function Navbar() {
   return (
     <nav
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-        scrolled ? "bg-slate-900/95 backdrop-blur shadow-lg" : "bg-transparent"
+        scrolled
+          ? "bg-slate-900/95 backdrop-blur-md shadow-lg shadow-black/20 border-b border-slate-800/60"
+          : "bg-transparent"
       }`}
     >
       <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
@@ -40,11 +42,14 @@ export default function Navbar() {
             <li key={link.to}>
               <Link
                 to={link.to}
-                className={`text-sm font-medium transition-colors hover:text-cyan-400 ${
+                className={`relative text-sm font-medium transition-colors hover:text-cyan-400 pb-1 ${
                   location.pathname === link.to ? "text-cyan-400" : "text-slate-300"
                 }`}
               >
                 {link.label}
+                {location.pathname === link.to && (
+                  <span className="absolute -bottom-0.5 left-0 right-0 h-0.5 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500" />
+                )}
               </Link>
             </li>
           ))}
